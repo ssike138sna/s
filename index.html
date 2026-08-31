@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>معرفة إصدار النظام - PS4 11.00</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #111;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            color: #00d2ff;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>معلومات نظام البلايستيشن</h1>
+        <p id="info">جاري فحص النظام...</p>
+    </div>
+
+    <script>
+        // كود JavaScript لقراءة معلومات النظام والمتصفح وإظهار إصدار الـ PS4 إن وجد
+        const ua = navigator.userAgent;
+        let systemVersion = "غير معروف أو متصفح عادي";
+
+        // محاولة استخراج إصدار الـ PlayStation 4 من الـ User Agent إن كان متوفراً
+        if (ua.includes("PlayStation 4")) {
+            let match = ua.match(/PlayStation 4[^\)]*v([0-9\.]+)/);
+            if (match) {
+                systemVersion = "إصدار نظام PS4: " + match[1];
+            } else {
+                systemVersion = "بلايستيشن 4 (الإصدار غير محدد بدقة في المتصفح)";
+            }
+        } else {
+            systemVersion = "متصفح حالي (ليس PS4):\n" + ua;
+        }
+
+        document.getElementById("info").innerText = systemVersion;
+    </script>
+
+</body>
+</html>
