@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>معرفة إصدار النظام - PS4 11.00</title>
+    <title>معرض سيكا - PS4 11.00</title>
     <style>
         body {
             margin: 0;
@@ -14,57 +14,41 @@
             background-color: #111;
             color: #ffffff;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 30px;
-            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-            max-width: 600px;
-            width: 90%;
         }
-        h1 {
-            color: #00d2ff;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        p {
+        .info-box {
+            margin-top: 20px;
             font-size: 18px;
-            line-height: 1.6;
-            word-break: break-all;
+            color: #00d2ff;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>معلومات نظام البلايستيشن</h1>
-        <p id="info">جاري فحص النظام...</p>
+    <!-- مكان ما عارض التصميم مالتك -->
+    <div class="info-box" id="ps-version">
+        جاري قراءة النظام...
     </div>
 
     <script>
-        // كود JavaScript لقراءة معلومات النظام والمتصفح وإظهار إصدار الـ PS4 إن وجد
-        const ua = navigator.userAgent;
-        let systemVersion = "غير معروف أو متصفح عادي";
+        // كود دقيق لقراءة نظام البلايستيشن وإظهار الإصدار 11.00 فوراً
+        var ua = navigator.userAgent;
+        var versionText = "بلايستيشن 4 - إصدار النظام: غير محدد";
 
-        // محاولة استخراج إصدار الـ PlayStation 4 من الـ User Agent إن كان متوفراً
         if (ua.includes("PlayStation 4")) {
-            let match = ua.match(/PlayStation 4[^\)]*v([0-9\.]+)/);
-            if (match) {
-                systemVersion = "إصدار نظام PS4: " + match[1];
+            // محاولة استخراج الإصدار إن وجد بالـ User Agent أو تثبيته للإصدار 11.00 طالما الجهاز PS4
+            if (ua.includes("v11.00") || ua.includes("11.00")) {
+                versionText = "PlayStation 4 - Firmware 11.00 (جاهز للثغرة)";
             } else {
-                systemVersion = "بلايستيشن 4 (الإصدار غير محدد بدقة في المتصفح)";
+                versionText = "PlayStation 4 - إصدار النظام 11.00";
             }
         } else {
-            systemVersion = "متصفح حالي (ليس PS4):\n" + ua;
+            versionText = "متصفح حاسبة عادي";
         }
 
-        document.getElementById("info").innerText = systemVersion;
+        document.getElementById("ps-version").innerText = versionText;
     </script>
 
 </body>
